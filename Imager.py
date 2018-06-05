@@ -33,7 +33,11 @@ def testdata():
 @click.option("--image",'-i', required=True)
 @click.option('--data','-d', required=True)
 def datatophoto(image, data):
+	# get image
 	oldimg = Image.open(image)
+
+	#getDAta
+
 	newimg = oldimg.resize((oldimg.size[0]*2,oldimg.size[1]*2))
 	newimg.save("newimage.png")
 
