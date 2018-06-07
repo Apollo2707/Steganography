@@ -2,7 +2,7 @@ import click
 from bitstring import BitArray
 from PIL import Image
 import struct
-
+import random
 
 @click.group(invoke_without_command=True)
 @click.pass_context
@@ -37,14 +37,42 @@ def datatophoto(image, data):
 	oldimg = Image.open(image)
 
 	#getDAta
+	with open(data, 'rb') as f:
+		lines = f.read()
+	print(lines)
+	bina = StrToBin(lines)
+	print(bina)
 
 	newimg = oldimg.resize((oldimg.size[0]*2,oldimg.size[1]*2))
+	
+	buildimage(image,newimg,bina)
+
 	newimg.save("newimage.png")
 
-	
+def deviation():
+	pos = ((1,1,0,-1),(1,1,1,0))
+	neg = ((-1,-1,0,1),(-1,-1,-1,0))
 
 def CreateFile():
 	pass
+
+def buildimage(oldimage,newimage,data):
+	oldpixelmap = oldimage.load()
+	newpixelmap = newimage.load()
+	counter = 0 
+	for y in range(oldimage.size[0]):
+		for x in range(oldimage.size[1]):
+			red , green, blue = oldpixelmap[x,y]
+			newx = x * 2
+			newy = y * 2
+
+			newpixelmap[x,y] = ()
+
+def
+
+def readPixelDeviation():
+
+
 
 def BinToStr(input_str):
 	#c = BitArray(hex=input_str)
