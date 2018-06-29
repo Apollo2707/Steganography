@@ -112,7 +112,10 @@ def BinToChr(chra):
 	c = int(chra, 2)
 	c = str(chr(c)).encode('ascii')
 	return c
-
+class dataHandler:
+	rawBinaryData = None
+	currentIndex = 0 
+	
 class pixelConverter:
 	data = None
 	majorpixel = None
@@ -120,18 +123,6 @@ class pixelConverter:
 	trpixel = None
 	blpixel = None
 	brpixel = None
-	
-
-	def __init__(self, pixel,data):
-		self.majorpixel = pixel
-		adddata()
-
-
-	def __init__(self, tlpixel, trpixel, blpixel, brpixel):
-		self.tlpixel = tlpixel
-		self.trpixel = trpixel
-		self.blpixel = blpixel
-		self.brpixel = brpixel
 
 	def deviation(self, bit):
 		#pos = [[1, 1, 0, -1], [1, 1, 1, 0], [1, 1, 1, -1]]
@@ -155,13 +146,13 @@ class pixelConverter:
 
 		pass
 
-	def adddata(self):
+	def adddata(self, majorPixel, data):
 
 		r, g, b, h = self.majorpixel
 
 		reddev = deviation(self.data[0])
 		greendev = deviation(self.data[1])
-		bluedev = deviation(self.data[2])
+		bluedev = deviation(self.data[2]) 
 
 		self.tlpixel = (r + reddev[0], g + greendev[0], b + bluedev[0])
 		self.trpixel = (r + reddev[1], g + greendev[1], b + bluedev[1])
